@@ -1,0 +1,24 @@
+#!/bin/bash
+
+##########################   META BEGIN  ########################### 
+
+#___  Author   :  Bloodweb.net                         _______________#
+#___  fileName :  $HOME/c/  #this-files-location#         ____________#
+#___  helpFile :  N/A                                       __________#  
+#___  Description:                                             >>   -#
+             # :: #ext-desc# --#
+
+#___  Imports :   (Keys from other locations)
+        #  * ./env.sh ( $HOME , dbg_log ,  )
+        #  *
+
+#___  Commons :   (Keys created via - this file)
+
+
+#___  Debugging:
+
+#___  Additional notes:
+
+###########################   META END   ########################### 
+
+

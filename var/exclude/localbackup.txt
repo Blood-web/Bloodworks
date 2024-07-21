@@ -1,0 +1,8 @@
+backup/stable
+backup/local
+appimages/
+.vscode
+lib/audio
+lib/img
+lib/pico/pico-sdk
+logs

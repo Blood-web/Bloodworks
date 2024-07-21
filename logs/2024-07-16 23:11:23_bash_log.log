@@ -1,0 +1,25 @@
+BloodBash Version:0.0.5 Compiled:11:10PM 2024-07-16
+Latest Stable version:
+2024-07-16 23:10:54 -   • OLDEST_LOG_FILE: /home/bloodweb/c/logs/2024-07-14 11:05:48_bash_log.log removed... 
+2024-07-16 23:10:56 -   • SSH:D-key_set = bloodweb-dev@192.168.1.117 
+2024-07-16 23:10:57 -   • SSH:L-key_set = bloodweb-lp@192.168.1.137 
+2024-07-16 23:10:57 -   • SSH:M-key_set = bloodweb-mob@192.168.1.127 
+2024-07-16 23:10:57 -   • SSH:P-key_set = bloodweb@192.168.1.107 
+2024-07-16 23:10:59 -   • Backup : /home/bloodweb/c/backup/local/2024-07-16 has been successfully written 
+2024-07-16 23:10:59 -   • Assumed device: *[1mpc[0m* 
+2024-07-16 23:10:59 -   • Device HAS_INTERNET: true 
+2024-07-16 23:10:59 -   • Home($HOME): /home/bloodweb 
+2024-07-16 23:10:59 -   • Env is sourced (RC_SOURCING): true 
+2024-07-16 23:10:59 -   • [92mFile sourced[0m :aliases.sh
+
+[92mFile sourced[0m :ntfy.sh
+
+[92mFile sourced[0m :time_date.sh
+
+[92mFile sourced[0m :config.sh
+
+[92mFile sourced[0m :.info
+
+[92mFile sourced[0m :ssh.sh
+ 
+BloodBash Compiling finished: 2024-07-16 23:10:59

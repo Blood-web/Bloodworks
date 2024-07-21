@@ -1,0 +1,97 @@
+## BloodBash - Repopulate Build
+
+vergex () { # Versioning software // Assumes new_ver should be written
+    local ver_unit_cap=12 # Max number for ver_unit[2||3]
+    IFS='.' read -ra parts <<< "$version" # Splits ver as parts via '.'
+    # checks there are 3 parts to ver_str else ends 
+    [[ ${#parts[@]} -ne 3 ]] && echo "Vergex Failed to recognise $version(BB_ver) as versioning number" && return 1
+    # Increment parted out version
+    parts[2]=$((parts[2] + 1))
+    if ((parts[2] > ver_unit_cap)); then
+        parts[2]=0 && parts[1]=$((parts[1] + 1)) # reset part[2] to 0 && inc parent
+        if ((parts[1] > ver_unit_cap)); then
+            parts[1]=0 && parts[0]=$((parts[0] + 1)) # reset part[1] to 0 && inc parent
+        fi
+    fi
+    set_version_number "${parts[0]}.${parts[1]}.${parts[2]}" # Incremented version
+}
+
+
+populate_build(){
+  local versioning_pattern='^[0-9]+\.[0-9]+\.[0-9]+$' #(n.n.n)
+
+  read -p "New Version? [last_ver: ($version)]: " version  # Pass versioning_pattern else vergex
+  [[ ! $version =~ $versioning_pattern ]] && (dbg_log "Valid Version (n.n.n) not supplied, using vergex" $write_debugging && vergex) || set_version_number $version
+
+  write_compiled
+
+  ./~/c/bash/env/ssh/ntfy.sh "Writing BloodBash Version: "`set_version_number`
+}
+
+# OP = operate on _item
+# If an argument is not passed, assumed request is get
+
+set_version_number () {
+# sed (-i-edit_in_place) line#(s-substitute)(/.*/-match_whole_line) `$file`
+   if [[ $# > 0 ]]; then # write
+    sed -i "2s/.*/version=\"$1\" #Current_Version/" `path_bbi` && dbg_log "Ver:$1 Written" $write_debugging
+   else #get
+    extract_quotes $(read_line 2 `path_bbi`)
+   fi
+}
+
+write_build_info () {
+[[ ! $# > 0 ]] && (pull_build_info && return 1) # View old build_info contents
+    # POPULATE
+    sed -i "2s/.*/version=\"$1\" #Current_Version/" `path_bbi` && dbg_log "Ver:$1 Written" $write_debugging
+    sed -i "3s/.*/last_compiled_date=\"`date`\" #Last compiled/" `path_bbi`
+    sed -i "4s/.*/last_compiled_device=\"$SYS_TYPE:$SSH_ENV\" #Last device to load BB/" `path_bbi`
+    ntfy "$SSH_ENV Built BloodBash.V.$1 on: `date`"
+}
+
+pull_build_info () {
+    local line_number=0 # current line
+    local lines_to_skip="1 12 31"
+
+    dbg_log " : Display Build_Info :" true
+    while IFS= read -r line; do
+        ((line_number++))
+
+        local variable_name=$(cut -d'=' -f1 <<< "$line") # Get all text before '='
+        # Get the value inside the quoted element 
+        local variable_val=$(echo $(read_line "$line_number" `path_bbi`) | cut -d'=' -f2 | cut -d'#' -f1 | tr -d '"')
+
+        # Continue if [BlankLine] || [line in lines_to_skip]
+        [[ "$variable_val" == "" || "$variable_val" == " " ||  " $lines_to_skip " =~ " $line_number " ]] && continue  #  Skip blanks && line 1
+
+        dbg_log " : $line_number : $variable_name=$variable_val" true
+     
+    done < `path_bbi`
+}
+
+
+# Write info to BBI
+write_date () {
+    sed -i "3s/.*/last_compiled_date=\"$(date)\" #Last_Population/" `path_bbi` && dbg_log "Population_date:$1 Written" $write_debugging
+}
+
+write_compilation_details () {
+    time_difference=$(date_difference "$last_compiled_date")
+   
+    sed -i "3s/.*/last_compiled_date=\"`date`\" #Last compiled/" `path_bbi`
+    sed -i "4s/.*/last_compiled_device=\"$SYS_TYPE:$SSH_ENV\" #Last device to load BB/" `path_bbi`
+   
+# Notfy if last compile > 10 minutes || last_compile_device != this_device
+    [[ $(date_difference -s "$last_compiled_date") -ge 600  ||  "$last_compiled_device" != "$SYS_TYPE:$SSH_ENV" ]] && nfty "${SSH_ENV%%@*}" "Compiled" 
+}
+
+write_targeted_rsync () { #= $1 #Device_1:(to/fm):Device_2#
+    sed -i "6s/.*/last_targeted_rsync=\"$1 $todays_date\"/" `path_bbi` && nfty "$1" "Rsync" "low"  
+}
+  
+write_keywords () {
+    local key=$(replace_newlines "_" "$reserved_keywords")  # no workies
+    sed -i "15s/.*/BB_keywords=\"$key\" #Keywords/" `path_bbi` && dbg_log "KeyWords Written" $write_debugging
+}
+write_compilation_details  
+#build

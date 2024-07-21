@@ -1,0 +1,9 @@
+BloodBash Version:0.0.5 Compiled:01:34PM 2024-07-15
+Latest Stable version:
+2024-07-15 13:34:05 -   • OLDEST_LOG_FILE: /home/bloodweb/c/logs/2024-07-13 21:03:14_bash_log.log removed... 
+2024-07-15 13:34:07 -   • SSH:D-key_set = bloodweb-dev@192.168.1.117 
+2024-07-15 13:34:08 -   • SSH:L-key_set = bloodweb-lp@192.168.1.137 
+2024-07-15 13:34:08 -   • SSH:M-key_set = bloodweb-mob@192.168.1.127 
+2024-07-15 13:34:08 -   • SSH:P-key_set = bloodweb@192.168.1.107 
+2024-07-15 13:34:10 -   • Backup : /home/bloodweb/c/backup/local/2024-07-15 has been successfully written 
+2024-07-15 13:34:10 -   • local_backups exceed Max: 6/5. Clearing oldest 1.. 

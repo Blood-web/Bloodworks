@@ -1,0 +1,12 @@
+#NAME"INSTALL_NAME":REQUIRED:IS_TERMINAL_CAPABLE
+apache2:0
+calc:1
+chafa:1
+git:0
+neofetch:1
+neovim:0
+node:0:1
+python3:1:1
+rolldice:1
+ruby"irb":1:1
+thunderbird:0

@@ -1,0 +1,26 @@
+# This folder overlooks the bloodweb production Enviroments and contains the following directories ::
+
+
+ BACKUP - Backups of the following folders
+  *  config.sh     || Backup commands & settings
+  *  exclude.list  || Files and folders to exclude from backing up
+  Stable   << Version based backup (synced across devices
+  Local    << Deviced based backup (Useful for recovery)
+
+ bash - BloodBash Working Enviroment
+  /dbg      << debug files
+  /env      << enviroment management
+    * /build/.info || contains bash state information
+  /help     << help files for bash
+  /meta     << boilerplate code
+  /scritps  << Misc bash scripts
+  /test     << Bash testing files
+  /var      << Terminal settings && ext. requirements
+
+ build - Compile universal files via bash
+
+ libs - Device and image 
+  /img   << key images (favicon, branding ect..)
+  /pico  << Code to run pico PWM(password manager)
+
+ node - BloodNode Working Enviroment

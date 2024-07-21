@@ -1,0 +1,202 @@
+#!/bin/bash
+
+#keyword check prevents duplicate
+file_count=0
+
+# Key Functions (functions required to run this file)
+ declare -Agx MF_debugger=(
+  [name]="debug.sh"
+  [key]="dbg"
+  [loc]="bash/dbg/"
+  [desc]="Bash Debugger"
+  [help]=""
+  [sourcable]=false # Already Sourced
+)
+declare -Agx MF_keyFunctions=(
+  [name]="keyFunctions.sh"
+  [key]="kfsh"
+  [loc]="bash/scripts/"
+  [desc]="Adds key functions to shell"
+  [help]=""
+  [sourcable]=false # Already Sourced
+)
+declare -Agx MF_index=( # this file
+  [name]="file_index"
+  [key]="inxs"
+  [loc]="bash/env"
+  [desc]="Index of files"
+  [help]=" Commons :
+   file_index creates the following aliases via main:
+    - alias '(cmd)_[key]'
+     : nano_ : nano file
+     : goto_ : cd containing folder
+     : view_ : cat file
+"
+)
+declare -Agx MF_env=( # env
+  [name]=".config"
+  [key]="env"
+  [loc]="bash/env/"
+  [desc]="The main bash enviroment file to be sourced"
+  [help]="Commons: file_env creates variables for export across other files $br - [key] [desc] $br :reserved_keywords; List of short keys that should be env"
+  [sourcable]=false # Forever Loop 
+)
+
+#Source_Priority(1) -> Files used in most additional Files
+
+declare -Agx MF_time_date=( # time and date
+  [name]="time_date.sh"
+  [key]="time_date"
+  [loc]="bash/scripts/"
+  [desc]="Holds common time and date calls"
+  [help]=""
+  [Source_Priority]=1
+)
+
+declare -Agx MF_alias=(
+  [name]="aliases.sh"     
+  [key]="aliases"      
+  [loc]="bash/var/"
+  [desc]="Aliases and CSS used in BloodBash Terminal"
+  [help]=""
+  [Source_Priority]=1
+)
+
+declare -Agx MF_keys=(
+  [name]="keys.sh"     
+  [key]="keys"      
+  [loc]="bash/var/"
+  [desc]="Variable keys used in BloodBash Terminal"
+  [help]=" Contains :  Keys"
+  [sourcable]=false # Already Sourced
+)
+
+declare -Agx MF_ntfy=(
+  [name]="ntfy.sh"
+  [key]="nfty"
+  [loc]="bash/env/ssh/"
+  [desc]="Contains the 'nfty' function, which provides mobile notifications for bloodbash updates"
+  [help]=""
+  [Source_Priority]=1
+)
+
+#Source_Priority(2) -> (Non Critical)
+
+declare -Agx MF_build_Info=(
+  [name]=".info"
+  [key]="bbi"
+  [loc]="bash/env/build/"
+  [desc]="Contains build info and key functions related to the state of BloodBash "
+  [help]="BB_details BB_last_stable_build"
+  [Source_Priority]=2
+)
+
+declare -Agx MF_ssh=(
+  [name]="ssh.sh"
+  [key]="ssh"
+  [loc]="bash/env/ssh/"
+  [desc]="handles all ssh bssh ans rsync related protocols"
+  [help]=""
+  [Source_Priority]=2
+)
+
+declare -Agx MF_backup=(
+  [name]="config.sh"
+  [key]="backup"
+  [loc]="backup/"
+  [desc]="Common Backup functions"
+  [help]=" Commons:
+    :local_backup; cp c/*(!backup) c/backup/($date)
+    :stable_backup; cp c/*(!backup) c
+"
+ [Source_Priority]=2
+)
+
+declare -Agx MF_tf=(
+  [name]="tf.sh"
+  [key]="tfsh"
+  [loc]="bash/test/"
+  [desc]="Contains bash specific testing functions"
+  [help]=""
+  [Source_Priority]=3
+)
+
+declare -Agx MF_file_Mod=(
+  [name]="file_mod.sh"
+  [key]="bmod"
+  [loc]="bash/scripts/"
+  [desc]="Contains functions to update the state of BloodBash internal files "
+  [help]=" "
+  [Source_Priority]=4
+)
+
+
+## Unsourced (Files that do not produce functionality )
+
+declare -Agx MF_todo=(
+  [name]="todo.txt"
+  [key]="todo"
+  [loc]="var/"
+  [desc]="Todo List"
+  [help]="Contains Tasklist"
+
+)
+
+ declare -Agx MF_test=(
+  [name]="test.sh"
+  [key]="test"
+  [loc]="bash/test/"
+  [desc]=" File to use for user testing functions"
+)
+
+ declare -Agx MF_src=(
+  [name]="file_src.sh"
+  [key]="srcy"
+  [loc]="bash/env/"
+  [desc]=""
+  [help]=""
+  [sourcable]=false
+)
+
+ declare -Agx MF_slc=(
+  [name]="img_converter.sh"
+  [key]="img_convert"
+  [loc]="bash/scripts/"
+  [desc]="Function to convert image types via python"
+  [help]="img_convert img.png(I) img.webp(O)"
+  [source_priority]=4
+)
+
+## (Unsourced)  TextFiles
+declare -Agx MF_pico_packages=(
+  [name]="main.py"
+  [key]="pico"      # Shorthand - .len >= 3 (chars) 
+  [loc]="lib/pico/main"      # Location  - $HOME/c/()/  remember the trailing '/'
+  [desc]="List of pico"     # Why is this file important
+  [help]="Contains a list of package(name):autoinstall(0/1):installname(if different)"                   # Understanding this file
+)
+
+declare -Agx MF_packages=(
+  [name]="packages.list"     # File Name - Absolute Name
+  [key]="packages"      # Shorthand - .len >= 3 (chars) 
+  [loc]="bash/var/"      # Location  - $HOME/c/()/  remember the trailing '/'
+  [desc]="List of packages"     # Why is this file important
+  [help]="Contains a list of package(name):autoinstall(0/1):installname(if different)"                   # Understanding this file
+)
+
+declare -Agx MF_tft=(
+  [name]="test.txt"
+  [key]="tft"
+  [loc]="test/"
+  [desc]="Regenerative Testing file "
+  [help]=""
+)
+
+declare -Agx MF_keywords=(
+  [name]="Words.txt"
+  [key]="keywords"
+  [loc]="var/keywords/"
+  [desc]="Single word - Keywords, near and dear to our heart"
+  [help]="ex. Love, COmpassion, Growth..."
+  [source_priority]=4
+)

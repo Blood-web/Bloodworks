@@ -1,0 +1,128 @@
+import serial.tools.list_ports
+import time, os, subprocess, argparse
+from tqdm import tqdm
+
+def find_pico_port():
+    pico_ports = []
+    ports = serial.tools.list_ports.comports() 
+    for port, desc, _ in ports:
+      # The desc may vary from device to device
+       if "Raspberry Pi Pico" in desc or "Board in FS mode - Board CDC" in desc:  # Adjust this condition as needed ## replace with an array of all know pi descriptors
+            pico_ports.append(port)
+    return pico_ports
+
+def pause_micro():
+    pico_ports = find_pico_port()
+    if pico_ports:
+        try:
+            for port in pico_ports:
+                ser = serial.Serial(port, baudrate=115200, timeout=1)
+                ser.write(b'\x03')  # Send Ctrl+C to pause MicroPython
+                time.sleep(0.1)  # Wait stops errors
+                ser.close() # close the serial connection
+            print("MicroPython paused successfully.")
+        except Exception as e:
+            print("Error pausing MicroPython:", e)
+    else:
+        print("No Raspberry Pi Pico found.")
+
+def check_file_exists_on_pico(file_name, port):
+    # Run the ampy ls command to list files on the Pico
+    result = subprocess.run(["ampy", "--port", port, "ls"], capture_output=True, text=True)
+    if result.returncode == 0:
+        # Check if the file name is in the output
+        if file_name in result.stdout:
+            return True  # File exists on the Pico
+    return False  # File does not exist on the Pico or command failed
+
+def sync_files_to_pico(local_dir,sync_all,images):
+    pico_ports = find_pico_port()
+    password_file=f"{local_dir}/creds.py"
+
+    if not pico_ports:
+        print("No Raspberry Pi Pico found.")
+        return
+    try:
+        for port in pico_ports:
+            # List files on the Pico and calculate hashes
+            result = subprocess.run(["ampy", "--port", port, "ls"], capture_output=True, text=True)
+            if result.returncode != 0:
+                print(f"Error listing files on {port}: {result.stderr.strip()}")
+                continue
+            if sync_all or images: 
+                for root, dirs, files in os.walk(local_dir):
+                    for d in dirs[:]:  # Skip specified folders
+                        if d in ["picozero", "picozero-0.4.2.dist-info"]:  # Folders to skip
+                            dirs.remove(d)
+                    progress_bar = tqdm(files, desc=f"Syncing Files to{port}", unit="file", leave=False)
+                    for file in progress_bar:
+                        local_file = os.path.join(root, file)
+                       #Update all images on pico 
+                        if  images and file.endswith((".jpg", ".jpeg", ".png")): 
+                            progress_bar.set_description(f"Syncing {file} to {port}")  # Update description after each file
+                            progress_bar.update()  # Update progress bar for each file
+                            upload_file_to_pico(local_file, port, "new")
+                        elif sync_all:
+                            progress_bar.set_description(f"Syncing {file} to {port}")  # Update description after each file
+                            progress_bar.update()  # Update progress bar for each file
+                            upload_file_to_pico(local_file, port, "new")
+                    progress_bar.close()  # Close the progress bar after finishing sync for one port
+            else: # Just sync credentials list
+                print("syncing:{}".format(password_file))
+                upload_file_to_pico(password_file,port)
+        print("Files synced to Raspberry Pi Pico successfully.")
+    except Exception as e:
+        print("Error syncing files to Raspberry Pi Pico:", e)
+
+def upload_file_to_pico(local_file, port,debug=None):
+    result = subprocess.run(["ampy", "--port", port, "put", local_file], capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"Error syncing {debug}: {local_file} to {port}: {result.stderr.strip()}")
+
+def restart_pico():
+    pico_ports = find_pico_port()
+    for port in pico_ports:
+        ser = serial.Serial(port, baudrate=115200, timeout=1)
+        ser.write(b'\x04')  # Send Ctrl+D to restart MicroPython
+        time.sleep(0.1)  # Wait stops errors
+        ser.close() # close the serial connection
+    print("Pi Pico Devices have been rebooted")
+
+def main(sync_all=False,images=False):
+    username = os.getlogin()
+    local_directory = f"/home/{username}/c/lib/pico/main"
+    pause_micro()                                 # Pause MicroPython while loop
+    sync_files_to_pico(local_directory,sync_all,images)  # Sync files to Pico
+
+if __name__ == "__main__":
+    # Declare argument parser
+    parser = argparse.ArgumentParser(description='Sync files to Raspberry Pi Pico')
+    
+    # Handle syncing
+    parser.add_argument('--sync-all', action='store_true', help='Sync all files in the directory')
+    parser.add_argument('--all', action='store_true', help='Sync all files in the directory')
+    parser.add_argument('-A', action='store_true', help='Sync all files in the directory')
+        # Sync images
+    parser.add_argument('--images', action='store_true', help='Sync all files in the directory')
+    parser.add_argument('--I', action='store_true', help='Sync all files in the directory')
+    
+    # Handle resetting the device
+    parser.add_argument('--reboot', action='store_true', help='Reboot the pico')
+    parser.add_argument('--restart', action='store_true', help='Reboot the pico')
+    parser.add_argument('-R', action='store_true', help='Reboot the pico')
+    
+    args = parser.parse_args() # add arguments
+    
+
+    if args.sync_all or args.A or args.all: # Pass sync
+        if args.I or args.images: #sync everything
+            main(True,True)
+        else:                   # sync all files but no images
+            main(True,False)
+    elif args.I or args.images: #only sync images && creds.py
+            main(False,True)
+    else:                       # only sync creds.py
+        main()
+
+    if True or args.reboot or args.restart or args.R: #Restart
+        restart_pico()

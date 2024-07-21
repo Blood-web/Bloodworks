@@ -1,0 +1,10 @@
+The `VAR` directory contains a variety of text based files and directories, including but not limited to:
+
+# Bash Specific
+* keys.sh - Terminal aliases, keys and settings
+* packages.list - Bash packages list (used to test exists in env)
+
+# General use 
+* Keywords - A directory of keywords
+* Notes - A directory of Personal notes
+* Todo.txt - A file containing tasks and days left to complete them

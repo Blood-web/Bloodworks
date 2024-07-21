@@ -1,0 +1,13 @@
+# Templates for bash arrays
+
+####
+File_Index Arrays::
+
+ declare -Agx MF_(name) (
+  [name]=""
+  [key]=""
+  [loc]=""
+  [desc]=""
+  [help]=""
+)
+####

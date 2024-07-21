@@ -1,0 +1,27 @@
+# Test funtions can be called as followed:
+
+# Is_ && Has_ are reserved testing words^ for the bloodweb protocol
+#  these ^words will almost exculusively be used for cross platform testing
+#   exclusively return `true | false`
+
+# Is : prefers a true paramter > true
+# Has : settles for truthy > true
+     # results unexpected
+
+# is_[@]:  ## returns true if condition is met
+#   :NaN; 
+     # arg not a Num
+#   :bool;
+     # arg == true | false  # (language specific) 
+#   :arr; 
+     # arg is array
+#   :prop; 
+     # arg2 is prop of arg1
+    
+#  has_[@]: ## returns is truthy
+#   :bool; 
+     #if $bool == true | false | 0 | 1 | 'true' | 'false' # (language specific check)
+
+# test_[@]:
+#   :arg; echo total args = $#
+#   :var; if [[ -n ${var[name]} ]] echo var has name

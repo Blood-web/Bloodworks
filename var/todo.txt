@@ -1,0 +1,20 @@
+
+
+# Usage : -(TODO) ((DaysToComplete)) (DaysLeft)
+
+## Personal Shit to do:
+
+
+
+## A list of Files to edit
+
+# Bloodweb
+-(BW-Meowzer) Update auto Refresher (when Client loses websocket connection after idle, restablish conn) (10) !!
+-(BW-KeyFunctions) Universal Light/Dark Slider (6) !!
+-(BW) Attach footer is (currently) mixed page hosting. move all footer assets to BWEB (12) !!
+-(BW) Slide array should be operable in a minimized state. (Expand and view as its own utility w/o image array input (tag images as array img so we know what to cycle)) (4) !!
+
+-(JE-Main) Rewrite Main Functions to be imported via Bloodweb Keyfiles (60) !!
+
+#BloodWorks
+-(ssh.sh) swap stage to use an exclude.list (and add appimages to that list.) (10) 10
