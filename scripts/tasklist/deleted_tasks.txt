@@ -1,0 +1,46 @@
+Add tracking of deleted items|completed in 0 days|2024-08-02
+Use Keywords and or Numbers to choose options (ADD,LIST,DELETE,EXIT)|completed in 1 days|Added on 2024-08-02|Completed on 2024-08-03
+Replace Original TASK list|completed in 1 days|Added on 2024-08-03|Completed on 2024-08-04
+Add show completed (Deleted) tasks interface|completed in 1 days|Added on 2024-08-03|Completed on 2024-08-04
+Combine menu items into sub menus (ADD,VIEW,EDIT,ADVANCED)|completed in 0 days|Added on 2024-08-04|Completed on 2024-08-04
+|completed in 0 days|Added on |Completed on 2024-08-04
+Workout x144|completed in 0 days|Added on 2024-08-04|Completed on 2024-08-04
+Set a recurring task (Workout, 100 days, family...)|completed in 0 days|Added on 2024-08-04|Completed on 2024-08-04
+Add tasks without entering interactive mode (Tasklist TASK DAYS_TO_COMPLETE)|completed in 2 days|Added on 2024-08-05|Completed on 2024-08-07
+Add projects to tasklist for better organisation|completed in 13 days|Added on 2024-08-04|Completed on 2024-08-17
+Direct nano edit tasklist/deleted file (advanced debugging)|completed in 12 days|Added on 2024-08-05|Completed on 2024-08-17
+Add default variation to sql products|completed in 18 days|Added on 2024-08-04|Completed on 2024-08-22
+Report doesn't calculate overdue tasks correctly|completed in 0 days|Added on 2024-08-23|Completed on 2024-08-23
+Implement recurring task system|completed in 8 days|Added on 2024-08-17|Completed on 2024-08-25
+Set weekly recurring task for 100 days|completed in 21 days|Added on 2024-08-05|Completed on 2024-08-26
+|completed in 0 days|Added on 2024-08-26|Completed on 2024-08-26
+test|completed in 0 days|Added on 2024-08-26|Completed on 2024-08-26
+test3|completed in 0 days|Added on 2024-08-26|Completed on 2024-08-26
+test2|completed in 0 days|Added on 2024-08-26|Completed on 2024-08-26
+test1|completed in 0 days|Added on 2024-08-26|Completed on 2024-08-26
+test3|completed in 0 days|Added on 2024-08-26|Completed on 2024-08-26
+test2|completed in 0 days|Added on 2024-08-26|Completed on 2024-08-26
+Delete multiple items at once|completed in 0 days|Added on 2024-08-26|Completed on 2024-08-26
+Add multiple items at once|completed in 0 days|Added on 2024-08-26|Completed on 2024-08-26
+Call ASIC|completed in 0 days|Added on 2024-08-28|Completed on 2024-08-28
+category test|completed in 0 days|Added on 2024-08-28|Completed on 2024-08-28
+On overdue tasks rather than 0 days read 'overdue'|completed in 0 days|Added on 2024-08-28|Completed on 2024-08-28
+Fix all jackewers main page links (temporarily remove dead links) |completed in 0 days|Added on 2024-08-28|Completed on 2024-08-28
+test|completed in 0 days|Added on 2024-08-29|Completed on 2024-08-29
+test|completed in 0 days|Added on 2024-08-29|Completed on 2024-08-29
+Test2|completed in 0 days|Added on 2024-08-29|Completed on 2024-08-29
+test|completed in 0 days|Added on 2024-08-29|Completed on 2024-08-29
+Test|completed in 0 days|Added on 2024-08-29|Completed on 2024-08-29
+Create Backup function|completed in 1 days|Added on 2024-08-28|Completed on 2024-08-29
+x144 or 15 minutes of pushups|completed in 5 days|Added on 2024-08-26|Completed on 2024-08-31
+x144 or 15 minutes of pushups|completed in 0 days|Added on |Completed on 2024-09-02
+Cycle through text on screen.. rathering than having to delete all text after the item you wish to change|completed in 4 days|Added on 2024-08-29|Completed on 2024-09-02
+Delete range (1-10 13-15..ect)|completed in 4 days|Added on 2024-08-29|Completed on 2024-09-02
+x144 or 15 minutes of pushups|completed in 0 days|Added on |Completed on 2024-09-02
+Intergrate into web functionality|completed in 0 days|Added on 2024-09-02|Completed on 2024-09-02
+Add a new 100 days project|completed in 7 days|Added on 2024-08-26|Completed on 2024-09-02
+"New|completed in 0 days|Added on 2024-09-02|Completed on 2024-09-02
+"CHECK|completed in 0 days|Added on 2024-09-02|Completed on 2024-09-02
+"CHECK|completed in 0 days|Added on 2024-09-02|Completed on 2024-09-02
+"CHECK|completed in 0 days|Added on 2024-09-02|Completed on 2024-09-02
+New Task|completed in 0 days|Added on 2024-09-02|Completed on 2024-09-02

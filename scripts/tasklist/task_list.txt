@@ -1,0 +1,13 @@
+Add a new 100 days project|7||recurring
+Add tasklist(this) category|2|2024-08-28|blood
+Cleanup advanced options|12|2024-08-28|blood
+Finish BloodWeb registiration and authority|3|2024-08-28|blood
+Fix all main page links (temporarily remove all dead links)|0|2024-08-28|jackewers.com
+If delete permenantely. then don't archive non-recurring tasks|8|2024-09-02|this
+Intergrate into web functionality|60|2024-09-02|this
+Option to change days to complete for a task|0|2024-08-28|blood
+Recurring test|1||recurring
+Twilio Alphanumeric Named SMS|20|2024-08-29|blood
+Update Users Birthdays|12|2024-08-28|blood
+x144 or 15 minutes of pushups|1||recurring
+Prompts (prompt_user_for_X..) for all main functions|10|2024-09-03|this
